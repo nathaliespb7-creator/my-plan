@@ -1,0 +1,1187 @@
+{
+  "meta": {
+    "version": 1,
+    "language": "ru",
+    "note": "Ориентировочный план, не медицинская рекомендация. Веса стартовые, подбираются на первой тренировке."
+  },
+  "profile": {
+    "sex": "female",
+    "age": 51,
+    "heightCm": 166,
+    "weightKg": 60,
+    "goal": "рекомпозиция: сила и мышцы, вес удерживать"
+  },
+  "targets": {
+    "kcal": 1900,
+    "kcalRange": [
+      1850,
+      1950
+    ],
+    "proteinG": [
+      100,
+      120
+    ],
+    "fatG": [
+      60,
+      65
+    ],
+    "carbsG": 220,
+    "fiberG": [
+      25,
+      30
+    ],
+    "waterL": [
+      1.8,
+      2.0
+    ],
+    "calciumMg": [
+      1000,
+      1200
+    ],
+    "basis": "Миффлин-Сан Жеор: обмен ~1220 ккал × активность 1,55"
+  },
+  "weekSchedule": {
+    "mon": "A",
+    "tue": "walk",
+    "wed": "B",
+    "thu": "walk_intervals",
+    "fri": "C",
+    "sat": "long_walk",
+    "sun": "rest"
+  },
+  "walking": {
+    "walk": {
+      "title": "Ходьба",
+      "minutes": [
+        40,
+        50
+      ],
+      "intensity": "можно говорить, но не петь"
+    },
+    "walk_intervals": {
+      "title": "Ходьба с интервалами",
+      "minutes": [
+        40,
+        50
+      ],
+      "intervals": {
+        "rounds": 5,
+        "fastMin": 3,
+        "easyMin": 2
+      }
+    },
+    "long_walk": {
+      "title": "Длинная прогулка",
+      "minutes": [
+        75,
+        90
+      ],
+      "intensity": "спокойный темп"
+    },
+    "dailyStepsGoal": [
+      7000,
+      10000
+    ]
+  },
+  "restDay": {
+    "title": "Отдых",
+    "miniRoutine": [
+      {
+        "name": "Кошка-корова",
+        "reps": "10 повторов"
+      },
+      {
+        "name": "Поза ребёнка",
+        "reps": "30 сек"
+      },
+      {
+        "name": "Растяжка сгибателей бедра",
+        "reps": "30 сек на сторону"
+      }
+    ]
+  },
+  "progression": [
+    {
+      "weeks": [
+        1,
+        3
+      ],
+      "name": "Адаптация",
+      "sets": "2 подхода вместо 3",
+      "repsInReserve": "3-4",
+      "focus": "техника"
+    },
+    {
+      "weeks": [
+        4,
+        8
+      ],
+      "name": "Рост",
+      "sets": "по плану (3)",
+      "repsInReserve": "2"
+    },
+    {
+      "weeks": [
+        9,
+        12
+      ],
+      "name": "Силовой",
+      "sets": "по плану, основные тяжелее, 6-10 повторов",
+      "repsInReserve": "1-2"
+    },
+    {
+      "weeks": [
+        6,
+        12
+      ],
+      "name": "Разгрузка",
+      "sets": "объём вдвое меньше",
+      "note": "недели 6 и 12"
+    }
+  ],
+  "progressionRule": "Если во всех подходах дошли до верха диапазона повторов, добавить 1-2 кг (для блока - 2,5-5 кг).",
+  "stopRules": [
+    "боль в груди",
+    "головокружение",
+    "острая боль в суставе",
+    "боль в пояснице, отдающая в ногу"
+  ],
+  "workouts": {
+    "A": {
+      "title": "Тренировка A",
+      "day": "mon",
+      "durationMin": "70-85",
+      "exercises": [
+        {
+          "id": "a1",
+          "name": "Гоблет-присед",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "10",
+          "startWeightKg": 6,
+          "weightMode": "one_dumbbell",
+          "startWeightText": "1×6 кг",
+          "cue": "Спина ровная, колени по линии носков",
+          "imageQuery": "goblet squat dumbbell form"
+        },
+        {
+          "id": "a2",
+          "name": "Румынская тяга с гантелями",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "10",
+          "startWeightKg": 6,
+          "weightMode": "each_hand",
+          "startWeightText": "2×6 кг",
+          "cue": "Таз назад, гантели скользят вдоль ног",
+          "imageQuery": "dumbbell Romanian deadlift form"
+        },
+        {
+          "id": "a3",
+          "name": "Жим гантелей лёжа",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "10",
+          "startWeightKg": 4,
+          "weightMode": "each_hand",
+          "startWeightText": "2×4 кг",
+          "cue": "Локти под углом ~45° к корпусу",
+          "imageQuery": "flat dumbbell bench press form"
+        },
+        {
+          "id": "a4",
+          "name": "Тяга блока сидя",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "12",
+          "startWeightKg": 17.5,
+          "weightMode": "machine",
+          "startWeightText": "15-20 кг на блоке",
+          "cue": "Лопатки сводить, корпус не раскачивать",
+          "imageQuery": "seated cable row form"
+        },
+        {
+          "id": "a5",
+          "name": "Жим гантелей сидя",
+          "block": "main",
+          "sets": 2,
+          "setsWeeks1to3": 2,
+          "reps": "10",
+          "startWeightKg": 3,
+          "weightMode": "each_hand",
+          "startWeightText": "2×3 кг",
+          "cue": "Поясницу не прогибать",
+          "imageQuery": "seated dumbbell shoulder press form"
+        },
+        {
+          "id": "a6",
+          "name": "Планка",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "20-30 сек",
+          "startWeightKg": null,
+          "weightMode": "bodyweight",
+          "startWeightText": "вес тела",
+          "cue": "Тело - прямая линия, таз не проваливать",
+          "imageQuery": "forearm plank correct form"
+        },
+        {
+          "id": "a7",
+          "name": "Прогулка фермера",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "30 м",
+          "startWeightKg": 8,
+          "weightMode": "each_hand",
+          "startWeightText": "2×8 кг",
+          "cue": "Плечи вниз, шаг ровный",
+          "imageQuery": "farmer's carry dumbbell"
+        },
+        {
+          "id": "a8",
+          "name": "Гиперэкстензия 45°",
+          "block": "core",
+          "sets": 2,
+          "setsWeeks1to3": 2,
+          "reps": "12",
+          "startWeightKg": null,
+          "weightMode": "bodyweight",
+          "startWeightText": "вес тела",
+          "cue": "Вверх до прямой линии, без прогиба в пояснице",
+          "imageQuery": "45 degree back extension form"
+        },
+        {
+          "id": "a9",
+          "name": "McGill curl-up",
+          "block": "core",
+          "sets": 2,
+          "setsWeeks1to3": 2,
+          "reps": "4 повтора, удержание 8 сек",
+          "startWeightKg": null,
+          "weightMode": "bodyweight",
+          "startWeightText": "вес тела",
+          "cue": "Приподнять только голову и плечи, ладони под поясницей",
+          "imageQuery": "McGill curl-up exercise"
+        }
+      ],
+      "warmup": "10 мин: 5 мин быстрой ходьбы или велотренажёр, суставная гимнастика, приседания без веса",
+      "cooldown": "5 мин: растяжка бёдер, груди, спины",
+      "restBetweenSetsSec": [
+        60,
+        90
+      ]
+    },
+    "B": {
+      "title": "Тренировка B",
+      "day": "wed",
+      "durationMin": "70-85",
+      "exercises": [
+        {
+          "id": "b1",
+          "name": "Становая с гантелями",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "10",
+          "startWeightKg": 8,
+          "weightMode": "each_hand",
+          "startWeightText": "2×8 кг",
+          "cue": "Спина нейтральная, гантели у ног",
+          "imageQuery": "dumbbell deadlift form beginner"
+        },
+        {
+          "id": "b2",
+          "name": "Выпады назад",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "8 на ногу",
+          "startWeightKg": 4,
+          "weightMode": "each_hand",
+          "startWeightText": "2×4 кг",
+          "cue": "Колено передней ноги над стопой",
+          "imageQuery": "dumbbell reverse lunge form"
+        },
+        {
+          "id": "b3",
+          "name": "Тяга верхнего блока",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "10",
+          "startWeightKg": 25,
+          "weightMode": "machine",
+          "startWeightText": "25 кг на блоке",
+          "cue": "Тянуть к верху груди, лопатки вниз",
+          "imageQuery": "lat pulldown machine form"
+        },
+        {
+          "id": "b4",
+          "name": "Отжимания с опорой на скамью",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "8-10",
+          "startWeightKg": null,
+          "weightMode": "bodyweight",
+          "startWeightText": "вес тела",
+          "cue": "Чем выше опора, тем легче",
+          "imageQuery": "incline push-up bench"
+        },
+        {
+          "id": "b5",
+          "name": "Махи гантелей в стороны",
+          "block": "main",
+          "sets": 2,
+          "setsWeeks1to3": 2,
+          "reps": "12",
+          "startWeightKg": 2,
+          "weightMode": "each_hand",
+          "startWeightText": "2×2 кг",
+          "cue": "Локти чуть согнуты, без рывков",
+          "imageQuery": "dumbbell lateral raise form"
+        },
+        {
+          "id": "b6",
+          "name": "Боковая планка",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "20 сек на сторону",
+          "startWeightKg": null,
+          "weightMode": "bodyweight",
+          "startWeightText": "вес тела",
+          "cue": "Тело - прямая линия",
+          "imageQuery": "side plank correct form"
+        },
+        {
+          "id": "b7",
+          "name": "Bird-dog",
+          "block": "main",
+          "sets": 2,
+          "setsWeeks1to3": 2,
+          "reps": "10 на сторону",
+          "startWeightKg": null,
+          "weightMode": "bodyweight",
+          "startWeightText": "вес тела",
+          "cue": "Поясница неподвижна",
+          "imageQuery": "bird dog exercise form"
+        },
+        {
+          "id": "b8",
+          "name": "Pallof press",
+          "block": "core",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "10 на сторону",
+          "startWeightKg": 5,
+          "weightMode": "machine",
+          "startWeightText": "5 кг на блоке",
+          "cue": "Не давать корпусу провернуться",
+          "imageQuery": "Pallof press cable form"
+        },
+        {
+          "id": "b9",
+          "name": "Superman",
+          "block": "core",
+          "sets": 2,
+          "setsWeeks1to3": 2,
+          "reps": "10, удержание 3 сек",
+          "startWeightKg": null,
+          "weightMode": "bodyweight",
+          "startWeightText": "вес тела",
+          "cue": "Руки и ноги на 5-10 см, шею не запрокидывать",
+          "imageQuery": "superman exercise lying back extension"
+        }
+      ],
+      "warmup": "10 мин: 5 мин быстрой ходьбы или велотренажёр, суставная гимнастика, приседания без веса",
+      "cooldown": "5 мин: растяжка бёдер, груди, спины",
+      "restBetweenSetsSec": [
+        60,
+        90
+      ]
+    },
+    "C": {
+      "title": "Тренировка C",
+      "day": "fri",
+      "durationMin": "70-85",
+      "exercises": [
+        {
+          "id": "c1",
+          "name": "Жим ногами",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "12",
+          "startWeightKg": 40,
+          "weightMode": "machine",
+          "startWeightText": "40 кг в тренажёре",
+          "cue": "Поясница прижата, колени не заваливать",
+          "imageQuery": "leg press machine form"
+        },
+        {
+          "id": "c2",
+          "name": "Ягодичный мостик",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "12",
+          "startWeightKg": 10,
+          "weightMode": "one_dumbbell",
+          "startWeightText": "1×10 кг",
+          "cue": "Вверху ягодицы напряжены, поясницу не прогибать",
+          "imageQuery": "dumbbell glute bridge form"
+        },
+        {
+          "id": "c3",
+          "name": "Тяга гантели одной рукой",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "10 на сторону",
+          "startWeightKg": 6,
+          "weightMode": "one_dumbbell",
+          "startWeightText": "1×6 кг",
+          "cue": "Спина параллельна полу",
+          "imageQuery": "one arm dumbbell row bench"
+        },
+        {
+          "id": "c4",
+          "name": "Жим гантелей стоя",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "10",
+          "startWeightKg": 3,
+          "weightMode": "each_hand",
+          "startWeightText": "2×3 кг",
+          "cue": "Ноги на ширине плеч, корпус не прогибать",
+          "imageQuery": "standing dumbbell shoulder press"
+        },
+        {
+          "id": "c5",
+          "name": "Бицепс + трицепс (супер-сет)",
+          "block": "main",
+          "sets": 2,
+          "setsWeeks1to3": 2,
+          "reps": "12 + 12",
+          "startWeightKg": 3,
+          "weightMode": "each_hand",
+          "startWeightText": "бицепс 2×3 кг, трицепс 1×4 кг",
+          "cue": "Сгибание, сразу разгибание, потом отдых",
+          "imageQuery": "dumbbell biceps curl overhead triceps extension"
+        },
+        {
+          "id": "c6",
+          "name": "Dead bug",
+          "block": "main",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "10 на сторону",
+          "startWeightKg": null,
+          "weightMode": "bodyweight",
+          "startWeightText": "вес тела",
+          "cue": "Поясница прижата к полу",
+          "imageQuery": "dead bug exercise form"
+        },
+        {
+          "id": "c7",
+          "name": "Heel drops (опускание на пятки)",
+          "block": "main",
+          "sets": 2,
+          "setsWeeks1to3": 2,
+          "reps": "20",
+          "startWeightKg": null,
+          "weightMode": "bodyweight",
+          "startWeightText": "вес тела",
+          "cue": "Подняться на носки, мягко опуститься на пятки",
+          "imageQuery": "heel drops exercise"
+        },
+        {
+          "id": "c8",
+          "name": "Suitcase carry",
+          "block": "core",
+          "sets": 3,
+          "setsWeeks1to3": 2,
+          "reps": "25 м на сторону",
+          "startWeightKg": 8,
+          "weightMode": "one_dumbbell",
+          "startWeightText": "1×8 кг",
+          "cue": "Гантель в одной руке, корпус не заваливать",
+          "imageQuery": "suitcase carry dumbbell"
+        },
+        {
+          "id": "c9",
+          "name": "Гиперэкстензия с паузой",
+          "block": "core",
+          "sets": 2,
+          "setsWeeks1to3": 2,
+          "reps": "10, удержание 3 сек",
+          "startWeightKg": null,
+          "weightMode": "bodyweight",
+          "startWeightText": "вес тела",
+          "cue": "Пауза 3 сек в верхней точке",
+          "imageQuery": "45 degree back extension form"
+        }
+      ],
+      "warmup": "10 мин: 5 мин быстрой ходьбы или велотренажёр, суставная гимнастика, приседания без веса",
+      "cooldown": "5 мин: растяжка бёдер, груди, спины",
+      "restBetweenSetsSec": [
+        60,
+        90
+      ]
+    }
+  },
+  "foods": {
+    "tvorog5": {
+      "name": "Творог 5%",
+      "per100g": {
+        "kcal": 121,
+        "protein": 17,
+        "fat": 5.0,
+        "carbs": 1.8
+      }
+    },
+    "oats": {
+      "name": "Овсянка (сухая)",
+      "per100g": {
+        "kcal": 370,
+        "protein": 13,
+        "fat": 7.0,
+        "carbs": 60
+      }
+    },
+    "berries": {
+      "name": "Ягоды",
+      "per100g": {
+        "kcal": 45,
+        "protein": 1,
+        "fat": 0.3,
+        "carbs": 10
+      }
+    },
+    "almond": {
+      "name": "Миндаль",
+      "per100g": {
+        "kcal": 580,
+        "protein": 21,
+        "fat": 50,
+        "carbs": 12
+      }
+    },
+    "walnut": {
+      "name": "Грецкий орех",
+      "per100g": {
+        "kcal": 650,
+        "protein": 15,
+        "fat": 65,
+        "carbs": 7
+      }
+    },
+    "chicken": {
+      "name": "Куриная грудка (готовая)",
+      "per100g": {
+        "kcal": 165,
+        "protein": 31,
+        "fat": 3.6,
+        "carbs": 0
+      }
+    },
+    "turkey": {
+      "name": "Индейка, филе (готовое)",
+      "per100g": {
+        "kcal": 150,
+        "protein": 29,
+        "fat": 3.0,
+        "carbs": 0
+      }
+    },
+    "buckwheat": {
+      "name": "Гречка (готовая)",
+      "per100g": {
+        "kcal": 110,
+        "protein": 4,
+        "fat": 1.0,
+        "carbs": 21
+      }
+    },
+    "rice": {
+      "name": "Рис (готовый)",
+      "per100g": {
+        "kcal": 130,
+        "protein": 2.7,
+        "fat": 0.3,
+        "carbs": 28
+      }
+    },
+    "potato": {
+      "name": "Картофель (варёный)",
+      "per100g": {
+        "kcal": 87,
+        "protein": 2,
+        "fat": 0.1,
+        "carbs": 20
+      }
+    },
+    "pasta": {
+      "name": "Цельнозерновая паста (готовая)",
+      "per100g": {
+        "kcal": 125,
+        "protein": 5,
+        "fat": 1.0,
+        "carbs": 25
+      }
+    },
+    "salad": {
+      "name": "Овощи свежие (салат)",
+      "per100g": {
+        "kcal": 20,
+        "protein": 1,
+        "fat": 0.2,
+        "carbs": 4
+      }
+    },
+    "veg": {
+      "name": "Овощи варёные/тушёные",
+      "per100g": {
+        "kcal": 35,
+        "protein": 2,
+        "fat": 0.4,
+        "carbs": 6
+      }
+    },
+    "oil": {
+      "name": "Оливковое масло",
+      "per100g": {
+        "kcal": 900,
+        "protein": 0,
+        "fat": 100,
+        "carbs": 0
+      }
+    },
+    "bread": {
+      "name": "Хлеб цельнозерновой",
+      "per100g": {
+        "kcal": 250,
+        "protein": 10,
+        "fat": 3.0,
+        "carbs": 43
+      }
+    },
+    "yogurt": {
+      "name": "Греческий йогурт 2%",
+      "per100g": {
+        "kcal": 73,
+        "protein": 10,
+        "fat": 2.0,
+        "carbs": 4
+      }
+    },
+    "apple": {
+      "name": "Яблоко",
+      "per100g": {
+        "kcal": 52,
+        "protein": 0.3,
+        "fat": 0.2,
+        "carbs": 14
+      }
+    },
+    "banana": {
+      "name": "Банан",
+      "per100g": {
+        "kcal": 89,
+        "protein": 1.1,
+        "fat": 0.3,
+        "carbs": 23
+      }
+    },
+    "salmon": {
+      "name": "Лосось (запечённый)",
+      "per100g": {
+        "kcal": 206,
+        "protein": 22,
+        "fat": 12,
+        "carbs": 0
+      }
+    },
+    "whitefish": {
+      "name": "Белая рыба (готовая)",
+      "per100g": {
+        "kcal": 100,
+        "protein": 22,
+        "fat": 1.0,
+        "carbs": 0
+      }
+    },
+    "egg": {
+      "name": "Яйцо",
+      "per100g": {
+        "kcal": 155,
+        "protein": 13,
+        "fat": 11,
+        "carbs": 1.1
+      }
+    },
+    "lentil": {
+      "name": "Чечевица (варёная)",
+      "per100g": {
+        "kcal": 116,
+        "protein": 9,
+        "fat": 0.4,
+        "carbs": 20
+      }
+    },
+    "kefir": {
+      "name": "Кефир 2,5%",
+      "per100g": {
+        "kcal": 53,
+        "protein": 2.9,
+        "fat": 2.5,
+        "carbs": 4
+      }
+    },
+    "avocado": {
+      "name": "Авокадо",
+      "per100g": {
+        "kcal": 160,
+        "protein": 2,
+        "fat": 15,
+        "carbs": 9
+      }
+    }
+  },
+  "menus": [
+    {
+      "id": "menu1",
+      "name": "Меню 1",
+      "meals": [
+        {
+          "name": "Завтрак",
+          "time": "08:00",
+          "items": [
+            {
+              "food": "tvorog5",
+              "label": "Творог 5%",
+              "grams": 120
+            },
+            {
+              "food": "oats",
+              "label": "Овсянка (сухая)",
+              "grams": 60
+            },
+            {
+              "food": "berries",
+              "label": "Ягоды",
+              "grams": 100
+            },
+            {
+              "food": "almond",
+              "label": "Миндаль",
+              "grams": 10
+            }
+          ],
+          "totals": {
+            "kcal": 470,
+            "protein": 31,
+            "fat": 16,
+            "carbs": 49
+          }
+        },
+        {
+          "name": "Обед",
+          "time": "13:00",
+          "items": [
+            {
+              "food": "chicken",
+              "label": "Куриная грудка (готовая)",
+              "grams": 90
+            },
+            {
+              "food": "buckwheat",
+              "label": "Гречка (готовая)",
+              "grams": 150
+            },
+            {
+              "food": "salad",
+              "label": "Овощи свежие (салат)",
+              "grams": 200
+            },
+            {
+              "food": "oil",
+              "label": "Оливковое масло",
+              "grams": 10
+            },
+            {
+              "food": "bread",
+              "label": "Хлеб цельнозерновой",
+              "grams": 60
+            }
+          ],
+          "totals": {
+            "kcal": 594,
+            "protein": 42,
+            "fat": 17,
+            "carbs": 65
+          }
+        },
+        {
+          "name": "Перекус",
+          "time": "16:30",
+          "items": [
+            {
+              "food": "banana",
+              "label": "Банан",
+              "grams": 120
+            },
+            {
+              "food": "almond",
+              "label": "Миндаль",
+              "grams": 15
+            },
+            {
+              "food": "yogurt",
+              "label": "Греческий йогурт 2%",
+              "grams": 100
+            }
+          ],
+          "totals": {
+            "kcal": 267,
+            "protein": 14,
+            "fat": 10,
+            "carbs": 33
+          }
+        },
+        {
+          "name": "Ужин",
+          "time": "19:30",
+          "items": [
+            {
+              "food": "salmon",
+              "label": "Лосось (запечённый)",
+              "grams": 120
+            },
+            {
+              "food": "potato",
+              "label": "Картофель (варёный)",
+              "grams": 250
+            },
+            {
+              "food": "veg",
+              "label": "Овощи варёные/тушёные",
+              "grams": 200
+            },
+            {
+              "food": "oil",
+              "label": "Оливковое масло",
+              "grams": 5
+            }
+          ],
+          "totals": {
+            "kcal": 580,
+            "protein": 35,
+            "fat": 20,
+            "carbs": 62
+          }
+        }
+      ],
+      "totals": {
+        "kcal": 1910,
+        "protein": 123,
+        "fat": 63,
+        "carbs": 210
+      }
+    },
+    {
+      "id": "menu2",
+      "name": "Меню 2",
+      "meals": [
+        {
+          "name": "Завтрак",
+          "time": "08:00",
+          "items": [
+            {
+              "food": "egg",
+              "label": "Яйцо",
+              "grams": 165
+            },
+            {
+              "food": "bread",
+              "label": "Хлеб цельнозерновой",
+              "grams": 60
+            },
+            {
+              "food": "salad",
+              "label": "Овощи свежие (салат)",
+              "grams": 150
+            },
+            {
+              "food": "avocado",
+              "label": "Авокадо",
+              "grams": 40
+            }
+          ],
+          "totals": {
+            "kcal": 500,
+            "protein": 30,
+            "fat": 26,
+            "carbs": 37
+          }
+        },
+        {
+          "name": "Обед",
+          "time": "13:00",
+          "items": [
+            {
+              "food": "turkey",
+              "label": "Индейка, филе (готовое)",
+              "grams": 100
+            },
+            {
+              "food": "rice",
+              "label": "Рис (готовый)",
+              "grams": 200
+            },
+            {
+              "food": "veg",
+              "label": "Овощи варёные/тушёные",
+              "grams": 200
+            },
+            {
+              "food": "oil",
+              "label": "Оливковое масло",
+              "grams": 10
+            }
+          ],
+          "totals": {
+            "kcal": 570,
+            "protein": 38,
+            "fat": 14,
+            "carbs": 68
+          }
+        },
+        {
+          "name": "Перекус",
+          "time": "16:30",
+          "items": [
+            {
+              "food": "kefir",
+              "label": "Кефир 2,5%",
+              "grams": 200
+            },
+            {
+              "food": "apple",
+              "label": "Яблоко",
+              "grams": 150
+            },
+            {
+              "food": "banana",
+              "label": "Банан",
+              "grams": 100
+            },
+            {
+              "food": "walnut",
+              "label": "Грецкий орех",
+              "grams": 15
+            }
+          ],
+          "totals": {
+            "kcal": 370,
+            "protein": 10,
+            "fat": 15,
+            "carbs": 53
+          }
+        },
+        {
+          "name": "Ужин",
+          "time": "19:30",
+          "items": [
+            {
+              "food": "whitefish",
+              "label": "Белая рыба (готовая)",
+              "grams": 150
+            },
+            {
+              "food": "pasta",
+              "label": "Цельнозерновая паста (готовая)",
+              "grams": 150
+            },
+            {
+              "food": "salad",
+              "label": "Овощи свежие (салат)",
+              "grams": 200
+            },
+            {
+              "food": "oil",
+              "label": "Оливковое масло",
+              "grams": 8
+            }
+          ],
+          "totals": {
+            "kcal": 450,
+            "protein": 42,
+            "fat": 11,
+            "carbs": 46
+          }
+        }
+      ],
+      "totals": {
+        "kcal": 1890,
+        "protein": 120,
+        "fat": 67,
+        "carbs": 204
+      }
+    },
+    {
+      "id": "menu3",
+      "name": "Меню 3",
+      "meals": [
+        {
+          "name": "Завтрак",
+          "time": "08:00",
+          "items": [
+            {
+              "food": "yogurt",
+              "label": "Греческий йогурт 2%",
+              "grams": 200
+            },
+            {
+              "food": "oats",
+              "label": "Овсянка (сухая)",
+              "grams": 50
+            },
+            {
+              "food": "banana",
+              "label": "Банан",
+              "grams": 100
+            },
+            {
+              "food": "walnut",
+              "label": "Грецкий орех",
+              "grams": 10
+            }
+          ],
+          "totals": {
+            "kcal": 485,
+            "protein": 29,
+            "fat": 14,
+            "carbs": 62
+          }
+        },
+        {
+          "name": "Обед",
+          "time": "13:00",
+          "items": [
+            {
+              "food": "lentil",
+              "label": "Чечевица (варёная)",
+              "grams": 150
+            },
+            {
+              "food": "chicken",
+              "label": "Куриная грудка (готовая)",
+              "grams": 80
+            },
+            {
+              "food": "veg",
+              "label": "Овощи варёные/тушёные",
+              "grams": 200
+            },
+            {
+              "food": "oil",
+              "label": "Оливковое масло",
+              "grams": 10
+            },
+            {
+              "food": "bread",
+              "label": "Хлеб цельнозерновой",
+              "grams": 30
+            }
+          ],
+          "totals": {
+            "kcal": 541,
+            "protein": 45,
+            "fat": 15,
+            "carbs": 55
+          }
+        },
+        {
+          "name": "Перекус",
+          "time": "16:30",
+          "items": [
+            {
+              "food": "tvorog5",
+              "label": "Творог 5%",
+              "grams": 100
+            },
+            {
+              "food": "berries",
+              "label": "Ягоды",
+              "grams": 100
+            },
+            {
+              "food": "bread",
+              "label": "Хлеб цельнозерновой",
+              "grams": 40
+            }
+          ],
+          "totals": {
+            "kcal": 266,
+            "protein": 22,
+            "fat": 6,
+            "carbs": 29
+          }
+        },
+        {
+          "name": "Ужин",
+          "time": "19:30",
+          "items": [
+            {
+              "food": "egg",
+              "label": "Яйцо",
+              "grams": 110
+            },
+            {
+              "food": "potato",
+              "label": "Картофель (варёный)",
+              "grams": 250
+            },
+            {
+              "food": "veg",
+              "label": "Овощи варёные/тушёные",
+              "grams": 200
+            },
+            {
+              "food": "oil",
+              "label": "Оливковое масло",
+              "grams": 8
+            },
+            {
+              "food": "avocado",
+              "label": "Авокадо",
+              "grams": 40
+            }
+          ],
+          "totals": {
+            "kcal": 594,
+            "protein": 24,
+            "fat": 27,
+            "carbs": 67
+          }
+        }
+      ],
+      "totals": {
+        "kcal": 1886,
+        "protein": 120,
+        "fat": 63,
+        "carbs": 212
+      }
+    }
+  ],
+  "menuRotation": "menu1, menu2, menu3 по кругу по дням недели; можно менять вручную"
+}
