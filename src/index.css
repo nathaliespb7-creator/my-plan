@@ -2,18 +2,57 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Премиальный вид: по умолчанию глубокий синий фон (всегда) */
+:root {
+  --paper: oklch(0.17 0.055 264);
+  --surface: oklch(0.22 0.06 264);
+  --ink: oklch(0.94 0.018 88);
+  --ink-muted: oklch(0.74 0.03 264);
+  --ink-faint: oklch(0.58 0.035 264);
+  --border: oklch(0.32 0.045 264);
+  --muted: oklch(0.26 0.05 264);
+  --action: oklch(0.62 0.16 264);
+  --action-hover: oklch(0.56 0.15 264);
+  --action-fg: oklch(0.98 0.01 88);
+  --action-soft: oklch(0.24 0.055 264);
+  --action-soft-border: oklch(0.38 0.07 264);
+  --done: oklch(0.65 0.11 158);
+  --done-fg: oklch(0.88 0.05 158);
+  --done-bg: oklch(0.24 0.045 158);
+  --done-border: oklch(0.4 0.07 158);
+  --input-bg: oklch(0.15 0.05 264);
+}
+
 @theme {
   --font-sans: "Segoe UI", system-ui, sans-serif;
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-action: var(--action);
+  --color-action-hover: var(--action-hover);
+  --color-action-fg: var(--action-fg);
+  --color-action-soft: var(--action-soft);
+  --color-action-soft-border: var(--action-soft-border);
+  --color-done: var(--done);
+  --color-done-fg: var(--done-fg);
+  --color-done-bg: var(--done-bg);
+  --color-done-border: var(--done-border);
+  --color-input-bg: var(--input-bg);
 }
 
 html {
   font-size: 16px;
+  color-scheme: dark;
 }
 
 body {
   margin: 0;
   min-height: 100dvh;
-  @apply bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100;
+  @apply bg-paper text-ink antialiased;
 }
 
 #root {

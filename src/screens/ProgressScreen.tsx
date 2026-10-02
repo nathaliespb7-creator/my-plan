@@ -99,10 +99,10 @@ export function ProgressScreen() {
     <div className="space-y-6">
       <header>
         <h1 className="text-2xl font-bold">Прогресс</h1>
-        <p className="text-base text-zinc-600 dark:text-zinc-400">
+        <p className="text-base text-ink-muted">
           Тренировок завершено: {countCompletedWorkouts(user)}
         </p>
-        <p className="text-base text-zinc-600 dark:text-zinc-400">
+        <p className="text-base text-ink-muted">
           Серия недель с силовыми: {streakWeeks(user)}
         </p>
       </header>
@@ -114,13 +114,13 @@ export function ProgressScreen() {
             type="text"
             inputMode="decimal"
             placeholder="кг"
-            className="min-h-11 flex-1 rounded-lg border px-3 text-base dark:border-zinc-600 dark:bg-zinc-950"
+            className="min-h-11 flex-1 rounded-lg border border-border bg-input-bg px-3 text-base text-ink"
             value={weightInput}
             onChange={(e) => setWeightInput(e.target.value)}
           />
           <button
             type="button"
-            className="min-h-11 rounded-lg bg-emerald-600 px-4 text-base text-white"
+            className="min-h-11 rounded-lg bg-action px-4 text-base text-action-fg"
             onClick={() => {
               const kg = parseFloat(weightInput.replace(',', '.'))
               if (!kg) return
@@ -139,13 +139,13 @@ export function ProgressScreen() {
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={bodyChart}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" tick={{ fontSize: 12 }} />
-                <YAxis domain={['auto', 'auto']} tick={{ fontSize: 12 }} />
+                <XAxis dataKey="date" tick={{ fontSize: 16 }} />
+                <YAxis domain={['auto', 'auto']} tick={{ fontSize: 16 }} />
                 <Tooltip />
                 <Line
                   type="monotone"
                   dataKey="kg"
-                  stroke="#059669"
+                  stroke="oklch(0.42 0.14 264)"
                   strokeWidth={2}
                 />
               </LineChart>
@@ -157,7 +157,7 @@ export function ProgressScreen() {
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">Вес упражнения</h2>
         <select
-          className="min-h-11 w-full rounded-lg border px-3 text-base dark:border-zinc-600 dark:bg-zinc-950"
+          className="min-h-11 w-full rounded-lg border border-border bg-input-bg px-3 text-base text-ink"
           value={exerciseId}
           onChange={(e) => setExerciseId(e.target.value)}
         >
@@ -172,20 +172,20 @@ export function ProgressScreen() {
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={exerciseChart}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" tick={{ fontSize: 12 }} />
-                <YAxis tick={{ fontSize: 12 }} />
+                <XAxis dataKey="date" tick={{ fontSize: 16 }} />
+                <YAxis tick={{ fontSize: 16 }} />
                 <Tooltip />
                 <Line
                   type="monotone"
                   dataKey="kg"
-                  stroke="#2563eb"
+                  stroke="oklch(0.42 0.14 264)"
                   strokeWidth={2}
                 />
               </LineChart>
             </ResponsiveContainer>
           </div>
         ) : (
-          <p className="text-base text-zinc-500">
+          <p className="text-base text-ink-faint">
             Пока нет записей — отметьте тренировки на вкладке «Сегодня».
           </p>
         )}

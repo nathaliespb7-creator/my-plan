@@ -44,6 +44,7 @@ export interface ExerciseDef {
   startWeightText: string
   cue: string
   imageQuery: string
+  image?: string
 }
 
 export interface WorkoutDef {
@@ -123,6 +124,7 @@ export interface UserData {
   startDate: string
   days: Record<string, DayState>
   bodyWeights: BodyWeightEntry[]
+  lastBackupAt?: string
 }
 
 export const STORAGE_KEY = 'myplan-v1'

@@ -13,6 +13,8 @@ import {
   stepsGoal,
   getSetCount,
 } from '../lib/planUtils'
+import { unlockRestAudio } from '../lib/restAudio'
+import { needsBackupReminder } from '../lib/storage'
 import { getExerciseState } from '../lib/workoutState'
 import type { ExerciseDef, ExerciseDayState, WorkoutDayState } from '../types/plan'
 
@@ -24,11 +26,16 @@ export function TodayScreen() {
     user,
     getDay,
     updateDay,
+    saveCopy,
   } = useApp()
   const day = getDay(todayKey)
   const { menuId, ensureMeals } = useTodayMeals(todayKey)
   const [restTimer, setRestTimer] = useState(false)
-  const [collapsed, setCollapsed] = useState<Record<string, boolean>>({})
+  const [restTimerKey, setRestTimerKey] = useState(0)
+  const [expandedExercises, setExpandedExercises] = useState<
+    Record<string, boolean>
+  >({})
+  const [zoomSrc, setZoomSrc] = useState<string | null>(null)
 
   useEffect(() => {
     ensureMeals()
@@ -82,10 +89,9 @@ export function TodayScreen() {
     sets[setIndex] = { ...sets[setIndex], done: !wasDone }
     saveExercise(ex.id, { ...state, sets })
     if (!wasDone) {
+      unlockRestAudio()
+      setRestTimerKey((k) => k + 1)
       setRestTimer(true)
-      if (sets.every((s) => s.done)) {
-        setCollapsed((c) => ({ ...c, [ex.id]: true }))
-      }
     }
   }
 
@@ -108,18 +114,20 @@ export function TodayScreen() {
     const state = getExerciseState(user, todayKey, ex, weekNumber)
     const count = getSetCount(ex, weekNumber)
     const allDone = state.sets.every((s) => s.done)
-    const isCollapsed = collapsed[ex.id] && allDone
+    const isCollapsed = allDone && !expandedExercises[ex.id]
 
     if (isCollapsed) {
       return (
         <div
           key={ex.id}
-          className="rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3 dark:border-emerald-800 dark:bg-emerald-950/30"
+          className="rounded-xl border border-done-border bg-done-bg px-4 py-3"
         >
           <button
             type="button"
-            className="min-h-11 w-full text-left text-base font-medium text-emerald-800 dark:text-emerald-300"
-            onClick={() => setCollapsed((c) => ({ ...c, [ex.id]: false }))}
+            className="min-h-11 w-full text-left text-base font-medium text-done-fg"
+            onClick={() =>
+              setExpandedExercises((c) => ({ ...c, [ex.id]: true }))
+            }
           >
             ✓ {ex.name}
           </button>
@@ -130,13 +138,27 @@ export function TodayScreen() {
     return (
       <div
         key={ex.id}
-        className="rounded-xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900"
+        className="rounded-xl border border-border bg-surface p-4"
       >
+        {ex.image && (
+          <button
+            type="button"
+            className="mb-3 block w-full overflow-hidden rounded-lg"
+            onClick={() => setZoomSrc(ex.image!)}
+            aria-label={`Увеличить: ${ex.name}`}
+          >
+            <img
+              src={ex.image}
+              alt={ex.name}
+              className="max-h-52 w-full object-contain bg-muted"
+            />
+          </button>
+        )}
         <h4 className="text-lg font-semibold">{ex.name}</h4>
-        <p className="text-base text-zinc-600 dark:text-zinc-400">
+        <p className="text-base text-ink-muted">
           {count}×{ex.reps} · {ex.startWeightText}
         </p>
-        <p className="mt-1 text-base italic text-zinc-500">{ex.cue}</p>
+        <p className="mt-1 text-base italic text-ink-faint">{ex.cue}</p>
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <span className="text-base">Вес, кг:</span>
           <button
@@ -160,7 +182,7 @@ export function TodayScreen() {
             href={googleImagesUrl(ex.imageQuery)}
             target="_blank"
             rel="noreferrer"
-            className="min-h-11 rounded-lg bg-zinc-100 px-3 py-2 text-base dark:bg-zinc-800"
+            className="min-h-11 rounded-lg bg-muted px-3 py-2 text-base text-ink"
           >
             Как делать
           </a>
@@ -173,8 +195,8 @@ export function TodayScreen() {
               onClick={() => toggleSet(ex, i)}
               className={`flex h-11 w-11 items-center justify-center rounded-full border-2 text-base font-medium ${
                 s.done
-                  ? 'border-emerald-600 bg-emerald-600 text-white'
-                  : 'border-zinc-300 dark:border-zinc-600'
+                  ? 'border-done bg-done text-action-fg'
+                  : 'border-border'
               }`}
             >
               {i + 1}
@@ -188,7 +210,7 @@ export function TodayScreen() {
               <input
                 type="number"
                 min={0}
-                className="min-h-11 w-24 rounded-lg border px-2 dark:border-zinc-600 dark:bg-zinc-950"
+                className="min-h-11 w-24 rounded-lg border border-border bg-input-bg px-2 text-ink"
                 value={s.reps ?? ''}
                 placeholder="—"
                 onChange={(e) =>
@@ -206,12 +228,26 @@ export function TodayScreen() {
 
   return (
     <div className="space-y-6 pb-4">
+      {zoomSrc && (
+        <button
+          type="button"
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/80 p-4"
+          onClick={() => setZoomSrc(null)}
+          aria-label="Закрыть"
+        >
+          <img
+            src={zoomSrc}
+            alt=""
+            className="max-h-[85dvh] max-w-full object-contain"
+          />
+        </button>
+      )}
       <header>
-        <p className="text-base capitalize text-zinc-600 dark:text-zinc-400">
+        <p className="text-base capitalize text-ink-muted">
           {formatRuDate(todayKey)}
         </p>
         <h1 className="text-2xl font-bold">Неделя {weekNumber} из 12</h1>
-        <p className="text-lg text-emerald-700 dark:text-emerald-400">
+        <p className="text-lg font-medium text-action">
           {dayTypeLabel(dayType)}
         </p>
       </header>
@@ -236,6 +272,7 @@ export function TodayScreen() {
 
           {restTimer && (
             <RestTimer
+              key={restTimerKey}
               seconds={60}
               onDone={() => setRestTimer(false)}
               onSkip={() => setRestTimer(false)}
@@ -260,12 +297,12 @@ export function TodayScreen() {
             Заминка: {workout.cooldown}
           </label>
 
-          <p className="text-base text-zinc-600">
+          <p className="text-base text-ink-muted">
             Упражнений выполнено: {workoutStats.done} из {workoutStats.total}
           </p>
           <button
             type="button"
-            className="min-h-11 w-full rounded-xl bg-emerald-600 px-4 text-base font-medium text-white disabled:opacity-40"
+            className="min-h-11 w-full rounded-xl bg-action px-4 text-base font-medium text-action-fg disabled:opacity-40"
             disabled={
               workoutStats.done < workoutStats.total &&
               !day.workout?.completed
@@ -282,7 +319,7 @@ export function TodayScreen() {
           </button>
           <button
             type="button"
-            className="min-h-11 w-full rounded-xl border border-zinc-300 text-base dark:border-zinc-600"
+            className="min-h-11 w-full rounded-xl border border-border bg-surface text-base text-ink"
             onClick={() =>
               updateDay(todayKey, {
                 workout: { ...baseWorkout(), completed: true },
@@ -295,7 +332,7 @@ export function TodayScreen() {
       )}
 
       {walkCfg && (
-        <section className="space-y-3 rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
+        <section className="space-y-3 rounded-xl border border-border bg-surface p-4">
           <h2 className="text-xl font-semibold">{walkCfg.title}</h2>
           <p className="text-base">
             Цель: {walkCfg.minutes[0]}–{walkCfg.minutes[1]} мин
@@ -309,7 +346,7 @@ export function TodayScreen() {
             <input
               type="number"
               min={0}
-              className="mt-1 min-h-11 w-full rounded-lg border px-3 dark:border-zinc-600 dark:bg-zinc-950"
+              className="mt-1 min-h-11 w-full rounded-lg border border-border bg-input-bg px-3 text-ink"
               value={day.walkMinutes ?? ''}
               onChange={(e) =>
                 updateDay(todayKey, {
@@ -333,7 +370,7 @@ export function TodayScreen() {
       )}
 
       {dayType === 'rest' && (
-        <section className="space-y-3 rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
+        <section className="space-y-3 rounded-xl border border-border bg-surface p-4">
           <h2 className="text-xl font-semibold">{plan.restDay.title}</h2>
           {plan.restDay.miniRoutine.map((item) => (
             <label
@@ -359,11 +396,11 @@ export function TodayScreen() {
         </section>
       )}
 
-      <section className="space-y-4 rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
+      <section className="space-y-4 rounded-xl border border-border bg-surface p-4">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="text-xl font-semibold">Питание</h2>
           <select
-            className="min-h-11 rounded-lg border px-2 text-base dark:border-zinc-600 dark:bg-zinc-950"
+            className="min-h-11 rounded-lg border border-border bg-input-bg px-2 text-base text-ink"
             value={day.meals?.menuId ?? menuId}
             onChange={(e) =>
               updateDay(todayKey, {
@@ -388,7 +425,7 @@ export function TodayScreen() {
         {menu.meals.map((meal) => (
           <div
             key={meal.name}
-            className="space-y-2 border-t border-zinc-100 pt-3 dark:border-zinc-800"
+            className="space-y-2 border-t border-border pt-3"
           >
             <label className="flex min-h-11 items-center gap-3 text-base font-medium">
               <input
@@ -423,7 +460,7 @@ export function TodayScreen() {
                       {Math.round(m.kcal)} ккал)
                     </span>
                     <select
-                      className="min-h-11 w-full rounded-lg border px-2 text-base dark:border-zinc-600 dark:bg-zinc-950"
+                      className="min-h-11 w-full rounded-lg border border-border bg-input-bg px-2 text-base text-ink"
                       value={swaps[`${meal.name}:${itemIdx}`] ?? item.food}
                       onChange={(e) =>
                         updateDay(todayKey, {
@@ -457,7 +494,7 @@ export function TodayScreen() {
           </p>
           <button
             type="button"
-            className="mt-2 min-h-11 rounded-lg bg-sky-600 px-4 text-base text-white"
+            className="mt-2 min-h-11 rounded-lg bg-action px-4 text-base text-action-fg"
             onClick={() => updateDay(todayKey, { waterMl: waterMl + 250 })}
           >
             +250 мл
@@ -465,21 +502,34 @@ export function TodayScreen() {
         </div>
       </section>
 
-      <section className="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
+      <section className="rounded-xl border border-border bg-surface p-4">
         <h2 className="text-xl font-semibold">Шаги</h2>
-        <p className="text-base text-zinc-600">
+        <p className="text-base text-ink-muted">
           Цель: {goalStepsMin}–{goalStepsMax}
         </p>
         <input
           type="number"
           min={0}
-          className="mt-2 min-h-11 w-full rounded-lg border px-3 text-base dark:border-zinc-600 dark:bg-zinc-950"
+          className="mt-2 min-h-11 w-full rounded-lg border border-border bg-input-bg px-3 text-base text-ink"
           value={steps || ''}
           onChange={(e) =>
             updateDay(todayKey, { steps: Number(e.target.value) || 0 })
           }
         />
       </section>
+
+      {needsBackupReminder(user.lastBackupAt, todayKey) && (
+        <section className="space-y-2 rounded-xl border border-action-soft-border bg-action-soft p-4">
+          <p className="text-base text-ink">Давно не сохраняли копию</p>
+          <button
+            type="button"
+            className="min-h-11 w-full rounded-xl bg-action px-4 text-base font-medium text-action-fg"
+            onClick={() => void saveCopy()}
+          >
+            Сохранить копию
+          </button>
+        </section>
+      )}
     </div>
   )
 }
@@ -515,9 +565,9 @@ function Bar({ label, pct }: { label: string; pct: number }) {
   return (
     <div>
       <p>{label}</p>
-      <div className="mt-1 h-3 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
+      <div className="mt-1 h-3 overflow-hidden rounded-full bg-muted">
         <div
-          className="h-full rounded-full bg-emerald-500 transition-all"
+          className="h-full rounded-full bg-action transition-all"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -559,7 +609,7 @@ function WalkIntervalTimer({
   const ss = secLeft % 60
 
   return (
-    <div className="rounded-lg bg-zinc-100 p-3 dark:bg-zinc-800">
+    <div className="rounded-lg bg-muted p-3">
       <p className="text-base font-medium">
         Раунд {round}/{intervals.rounds} ·{' '}
         {phase === 'fast' ? 'Быстро' : 'Спокойно'}
@@ -569,7 +619,7 @@ function WalkIntervalTimer({
       </p>
       <button
         type="button"
-        className="mt-2 min-h-11 rounded-lg bg-emerald-600 px-4 text-base text-white"
+        className="mt-2 min-h-11 rounded-lg bg-action px-4 text-base text-action-fg"
         onClick={() => setRunning((r) => !r)}
       >
         {running ? 'Пауза' : 'Старт интервалов'}

@@ -1,23 +1,26 @@
 import { useRef, useState } from 'react'
 import { useApp } from '../context/AppContext'
 import { plan } from '../lib/planUtils'
+import { formatBackupDate } from '../lib/storage'
 
 export function PlanScreen() {
   const {
     user,
     resetProgress,
-    exportData,
+    saveCopy,
     importData,
     setStartDateSetting,
   } = useApp()
   const fileRef = useRef<HTMLInputElement>(null)
   const [confirmReset, setConfirmReset] = useState(false)
+  const [importError, setImportError] = useState<string | null>(null)
+  const [savingCopy, setSavingCopy] = useState(false)
 
   return (
     <div className="space-y-8 pb-4">
       <header>
         <h1 className="text-2xl font-bold">План</h1>
-        <p className="text-base text-zinc-600 dark:text-zinc-400">
+        <p className="text-base text-ink-muted">
           Только просмотр. Все данные из вашего файла плана.
         </p>
       </header>
@@ -40,7 +43,7 @@ export function PlanScreen() {
         return (
           <section key={key} className="space-y-2">
             <h2 className="text-xl font-semibold">{w.title}</h2>
-            <p className="text-base text-zinc-600">
+            <p className="text-base text-ink-muted">
               {w.durationMin} мин · разминка и заминка в приложении «Сегодня»
             </p>
             <ul className="list-inside list-disc space-y-1 text-base">
@@ -65,9 +68,9 @@ export function PlanScreen() {
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">Меню</h2>
         {plan.menus.map((menu) => (
-          <div key={menu.id} className="rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
+          <div key={menu.id} className="rounded-xl border border-border bg-surface p-4">
             <h3 className="text-lg font-medium">{menu.name}</h3>
-            <p className="text-base text-zinc-600">
+            <p className="text-base text-ink-muted">
               ~{menu.totals.kcal} ккал · Б {menu.totals.protein} · Ж{' '}
               {menu.totals.fat} · У {menu.totals.carbs}
             </p>
@@ -76,7 +79,7 @@ export function PlanScreen() {
                 <p className="font-medium">
                   {meal.name} ({meal.time})
                 </p>
-                <ul className="text-base text-zinc-700 dark:text-zinc-300">
+                <ul className="text-base text-ink-muted">
                   {meal.items.map((it, i) => (
                     <li key={i}>
                       {it.label} — {it.grams} г
@@ -95,39 +98,43 @@ export function PlanScreen() {
           {plan.progression.map((p) => (
             <li
               key={p.name}
-              className="rounded-lg border border-zinc-200 p-3 dark:border-zinc-800"
+              className="rounded-lg border border-border bg-surface p-3"
             >
               <span className="font-medium">
                 Недели {p.weeks[0]}
                 {p.weeks.length > 1 ? `–${p.weeks[p.weeks.length - 1]}` : ''}:{' '}
                 {p.name}
               </span>
-              <p className="text-zinc-600 dark:text-zinc-400">{p.sets}</p>
+              <p className="text-ink-muted">{p.sets}</p>
             </li>
           ))}
         </ul>
         <p className="text-base">{plan.progressionRule}</p>
       </section>
 
-      <section className="space-y-4 rounded-xl border border-zinc-200 p-4 dark:border-zinc-800">
+      <section className="space-y-4 rounded-xl border border-border bg-surface p-4">
         <h2 className="text-xl font-semibold">Настройки</h2>
-        <label className="block text-base">
-          Дата старта плана
-          <input
-            type="date"
-            className="mt-1 min-h-11 w-full rounded-lg border px-3 dark:border-zinc-600 dark:bg-zinc-950"
-            value={user.startDate}
-            onChange={(e) => setStartDateSetting(e.target.value)}
-          />
-        </label>
 
         <button
           type="button"
-          className="min-h-11 w-full rounded-lg border border-zinc-300 text-base dark:border-zinc-600"
-          onClick={() => exportData()}
+          className="min-h-12 w-full rounded-xl bg-action px-4 text-lg font-semibold text-action-fg disabled:opacity-50"
+          disabled={savingCopy}
+          onClick={async () => {
+            setSavingCopy(true)
+            try {
+              await saveCopy()
+            } finally {
+              setSavingCopy(false)
+            }
+          }}
         >
-          Экспорт данных (JSON)
+          Сохранить копию
         </button>
+        <p className="text-base text-ink-muted">
+          {user.lastBackupAt
+            ? `Последняя копия: ${formatBackupDate(user.lastBackupAt)}`
+            : 'Копий ещё не было'}
+        </p>
 
         <input
           ref={fileRef}
@@ -136,17 +143,42 @@ export function PlanScreen() {
           className="hidden"
           onChange={async (e) => {
             const f = e.target.files?.[0]
-            if (f) await importData(f)
             e.target.value = ''
+            if (!f) return
+            setImportError(null)
+            try {
+              await importData(f)
+            } catch (err) {
+              setImportError(
+                err instanceof Error
+                  ? err.message
+                  : 'Не удалось загрузить файл. Проверьте, что это копия из «Мой план».',
+              )
+            }
           }}
         />
         <button
           type="button"
-          className="min-h-11 w-full rounded-lg border border-zinc-300 text-base dark:border-zinc-600"
+          className="min-h-11 w-full rounded-lg border border-border bg-surface text-base text-ink"
           onClick={() => fileRef.current?.click()}
         >
-          Импорт данных из файла
+          Загрузить копию
         </button>
+        {importError && (
+          <p className="text-base text-red-700 dark:text-red-400" role="alert">
+            {importError}
+          </p>
+        )}
+
+        <label className="block text-base">
+          Дата старта плана
+          <input
+            type="date"
+            className="mt-1 min-h-11 w-full rounded-lg border border-border bg-input-bg px-3 text-ink"
+            value={user.startDate}
+            onChange={(e) => setStartDateSetting(e.target.value)}
+          />
+        </label>
 
         {!confirmReset ? (
           <button
@@ -173,7 +205,7 @@ export function PlanScreen() {
             </button>
             <button
               type="button"
-              className="min-h-11 w-full rounded-lg border text-base"
+              className="min-h-11 w-full rounded-lg border border-border bg-surface text-base text-ink"
               onClick={() => setConfirmReset(false)}
             >
               Отмена
@@ -182,7 +214,7 @@ export function PlanScreen() {
         )}
       </section>
 
-      <footer className="border-t border-zinc-200 pt-4 text-base text-zinc-500 dark:border-zinc-800">
+      <footer className="border-t border-border pt-4 text-base text-ink-faint">
         {plan.meta.note}
       </footer>
     </div>

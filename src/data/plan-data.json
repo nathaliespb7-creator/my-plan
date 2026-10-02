@@ -163,7 +163,8 @@
           "weightMode": "one_dumbbell",
           "startWeightText": "1×6 кг",
           "cue": "Спина ровная, колени по линии носков",
-          "imageQuery": "goblet squat dumbbell form"
+          "imageQuery": "goblet squat dumbbell form",
+          "image": "/exercises/a1.jpg"
         },
         {
           "id": "a2",
@@ -176,7 +177,8 @@
           "weightMode": "each_hand",
           "startWeightText": "2×6 кг",
           "cue": "Таз назад, гантели скользят вдоль ног",
-          "imageQuery": "dumbbell Romanian deadlift form"
+          "imageQuery": "dumbbell Romanian deadlift form",
+          "image": "/exercises/a2.jpg"
         },
         {
           "id": "a3",
@@ -189,7 +191,8 @@
           "weightMode": "each_hand",
           "startWeightText": "2×4 кг",
           "cue": "Локти под углом ~45° к корпусу",
-          "imageQuery": "flat dumbbell bench press form"
+          "imageQuery": "flat dumbbell bench press form",
+          "image": "/exercises/a3.jpg"
         },
         {
           "id": "a4",
@@ -202,7 +205,8 @@
           "weightMode": "machine",
           "startWeightText": "15-20 кг на блоке",
           "cue": "Лопатки сводить, корпус не раскачивать",
-          "imageQuery": "seated cable row form"
+          "imageQuery": "seated cable row form",
+          "image": "/exercises/a4.jpg"
         },
         {
           "id": "a5",
@@ -215,7 +219,8 @@
           "weightMode": "each_hand",
           "startWeightText": "2×3 кг",
           "cue": "Поясницу не прогибать",
-          "imageQuery": "seated dumbbell shoulder press form"
+          "imageQuery": "seated dumbbell shoulder press form",
+          "image": "/exercises/a5.jpg"
         },
         {
           "id": "a6",
@@ -228,7 +233,8 @@
           "weightMode": "bodyweight",
           "startWeightText": "вес тела",
           "cue": "Тело - прямая линия, таз не проваливать",
-          "imageQuery": "forearm plank correct form"
+          "imageQuery": "forearm plank correct form",
+          "image": "/exercises/a6.jpg"
         },
         {
           "id": "a7",
@@ -241,7 +247,8 @@
           "weightMode": "each_hand",
           "startWeightText": "2×8 кг",
           "cue": "Плечи вниз, шаг ровный",
-          "imageQuery": "farmer's carry dumbbell"
+          "imageQuery": "farmer's carry dumbbell",
+          "image": "/exercises/a7.jpg"
         },
         {
           "id": "a8",
@@ -254,7 +261,8 @@
           "weightMode": "bodyweight",
           "startWeightText": "вес тела",
           "cue": "Вверх до прямой линии, без прогиба в пояснице",
-          "imageQuery": "45 degree back extension form"
+          "imageQuery": "45 degree back extension form",
+          "image": "/exercises/a8.jpg"
         },
         {
           "id": "a9",
@@ -306,7 +314,8 @@
           "weightMode": "each_hand",
           "startWeightText": "2×4 кг",
           "cue": "Колено передней ноги над стопой",
-          "imageQuery": "dumbbell reverse lunge form"
+          "imageQuery": "dumbbell reverse lunge form",
+          "image": "/exercises/b2.jpg"
         },
         {
           "id": "b3",
@@ -319,7 +328,8 @@
           "weightMode": "machine",
           "startWeightText": "25 кг на блоке",
           "cue": "Тянуть к верху груди, лопатки вниз",
-          "imageQuery": "lat pulldown machine form"
+          "imageQuery": "lat pulldown machine form",
+          "image": "/exercises/b3.jpg"
         },
         {
           "id": "b4",
@@ -332,7 +342,8 @@
           "weightMode": "bodyweight",
           "startWeightText": "вес тела",
           "cue": "Чем выше опора, тем легче",
-          "imageQuery": "incline push-up bench"
+          "imageQuery": "incline push-up bench",
+          "image": "/exercises/b4.jpg"
         },
         {
           "id": "b5",
@@ -345,7 +356,8 @@
           "weightMode": "each_hand",
           "startWeightText": "2×2 кг",
           "cue": "Локти чуть согнуты, без рывков",
-          "imageQuery": "dumbbell lateral raise form"
+          "imageQuery": "dumbbell lateral raise form",
+          "image": "/exercises/b5.jpg"
         },
         {
           "id": "b6",
@@ -384,7 +396,8 @@
           "weightMode": "machine",
           "startWeightText": "5 кг на блоке",
           "cue": "Не давать корпусу провернуться",
-          "imageQuery": "Pallof press cable form"
+          "imageQuery": "Pallof press cable form",
+          "image": "/exercises/b8.jpg"
         },
         {
           "id": "b9",
@@ -397,7 +410,8 @@
           "weightMode": "bodyweight",
           "startWeightText": "вес тела",
           "cue": "Руки и ноги на 5-10 см, шею не запрокидывать",
-          "imageQuery": "superman exercise lying back extension"
+          "imageQuery": "superman exercise lying back extension",
+          "image": "/exercises/b9.jpg"
         }
       ],
       "warmup": "10 мин: 5 мин быстрой ходьбы или велотренажёр, суставная гимнастика, приседания без веса",
@@ -423,7 +437,8 @@
           "weightMode": "machine",
           "startWeightText": "40 кг в тренажёре",
           "cue": "Поясница прижата, колени не заваливать",
-          "imageQuery": "leg press machine form"
+          "imageQuery": "leg press machine form",
+          "image": "/exercises/c1.jpg"
         },
         {
           "id": "c2",
@@ -436,7 +451,8 @@
           "weightMode": "one_dumbbell",
           "startWeightText": "1×10 кг",
           "cue": "Вверху ягодицы напряжены, поясницу не прогибать",
-          "imageQuery": "dumbbell glute bridge form"
+          "imageQuery": "dumbbell glute bridge form",
+          "image": "/exercises/c2.jpg"
         },
         {
           "id": "c3",
@@ -449,7 +465,8 @@
           "weightMode": "one_dumbbell",
           "startWeightText": "1×6 кг",
           "cue": "Спина параллельна полу",
-          "imageQuery": "one arm dumbbell row bench"
+          "imageQuery": "one arm dumbbell row bench",
+          "image": "/exercises/c3.jpg"
         },
         {
           "id": "c4",
@@ -462,7 +479,8 @@
           "weightMode": "each_hand",
           "startWeightText": "2×3 кг",
           "cue": "Ноги на ширине плеч, корпус не прогибать",
-          "imageQuery": "standing dumbbell shoulder press"
+          "imageQuery": "standing dumbbell shoulder press",
+          "image": "/exercises/c4.jpg"
         },
         {
           "id": "c5",
@@ -488,7 +506,8 @@
           "weightMode": "bodyweight",
           "startWeightText": "вес тела",
           "cue": "Поясница прижата к полу",
-          "imageQuery": "dead bug exercise form"
+          "imageQuery": "dead bug exercise form",
+          "image": "/exercises/c6.jpg"
         },
         {
           "id": "c7",
@@ -527,7 +546,8 @@
           "weightMode": "bodyweight",
           "startWeightText": "вес тела",
           "cue": "Пауза 3 сек в верхней точке",
-          "imageQuery": "45 degree back extension form"
+          "imageQuery": "45 degree back extension form",
+          "image": "/exercises/c9.jpg"
         }
       ],
       "warmup": "10 мин: 5 мин быстрой ходьбы или велотренажёр, суставная гимнастика, приседания без веса",

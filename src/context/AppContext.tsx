@@ -34,7 +34,7 @@ interface AppContextValue {
   getDay: (dateKey: string) => DayState
   updateDay: (dateKey: string, patch: Partial<DayState>) => void
   resetProgress: () => void
-  exportData: () => void
+  saveCopy: () => Promise<boolean>
   importData: (file: File) => Promise<void>
   setBodyWeightForDate: (dateKey: string, kg: number) => void
   setStartDateSetting: (date: string) => void
@@ -67,15 +67,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [user])
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.classList.add('dark')
-    }
-    const mq = window.matchMedia('(prefers-color-scheme: dark)')
-    const fn = (e: MediaQueryListEvent) => {
-      document.documentElement.classList.toggle('dark', e.matches)
-    }
-    mq.addEventListener('change', fn)
-    return () => mq.removeEventListener('change', fn)
+    document.documentElement.classList.add('dark')
   }, [])
 
   const setStartDate = useCallback((date: string) => {
@@ -100,8 +92,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }))
   }, [])
 
-  const exportData = useCallback(() => {
-    exportUserData(user)
+  const saveCopy = useCallback(async () => {
+    const ok = await exportUserData(user)
+    if (ok) {
+      const at = toDateKey(new Date())
+      setUser((u) => ({ ...u, lastBackupAt: at }))
+    }
+    return ok
   }, [user])
 
   const importData = useCallback(async (file: File) => {
@@ -140,7 +137,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       getDay,
       updateDay,
       resetProgress,
-      exportData,
+      saveCopy,
       importData,
       setBodyWeightForDate,
       setStartDateSetting,
@@ -156,7 +153,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       getDay,
       updateDay,
       resetProgress,
-      exportData,
+      saveCopy,
       importData,
       setBodyWeightForDate,
       setStartDateSetting,
