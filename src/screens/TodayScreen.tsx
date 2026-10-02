@@ -103,13 +103,6 @@ export function TodayScreen() {
     })
   }
 
-  const updateSetReps = (ex: ExerciseDef, setIndex: number, reps: number) => {
-    const state = getExerciseState(user, todayKey, ex, weekNumber)
-    const sets = [...state.sets]
-    sets[setIndex] = { ...sets[setIndex], reps }
-    saveExercise(ex.id, { ...state, sets })
-  }
-
   const renderExercise = (ex: ExerciseDef) => {
     const state = getExerciseState(user, todayKey, ex, weekNumber)
     const count = getSetCount(ex, weekNumber)
@@ -201,23 +194,6 @@ export function TodayScreen() {
             >
               {i + 1}
             </button>
-          ))}
-        </div>
-        <div className="mt-3 space-y-2">
-          {state.sets.map((s, i) => (
-            <label key={i} className="flex items-center gap-2 text-base">
-              <span className="w-24">Повторы {i + 1}:</span>
-              <input
-                type="number"
-                min={0}
-                className="min-h-11 w-24 rounded-lg border border-border bg-input-bg px-2 text-ink"
-                value={s.reps ?? ''}
-                placeholder="—"
-                onChange={(e) =>
-                  updateSetReps(ex, i, Number(e.target.value) || 0)
-                }
-              />
-            </label>
           ))}
         </div>
       </div>
